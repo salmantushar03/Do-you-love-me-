@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Me?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffe6e6, #ffccff);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ff4d4d;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .gif-container {
+            margin-bottom: 20px;
+        }
+
+        .gif-container img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #yesBtn {
+            background: #ff4d4d;
+            color: white;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        #noBtn {
+            background: #4d94ff;
+            color: white;
+            position: relative;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.1); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.1); }
+            80% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('https://img.icons8.com/emoji/96/heart-suit.png') no-repeat center;
+            background-size: cover;
+            animation: float 10s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .popup h2 {
+            color: #ff4d4d;
+            margin: 0;
+        }
+
+        .mute-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .gif-container img {
+                width: 100px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            .button-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="mute-button" onclick="toggleMute()">🔇</button>
+    <audio id="backgroundMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-sweet.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <h1>Do you love me? 💖</h1>
+    <div class="gif-container">
+        <img src="https://media.giphy.com/media/L09P3h5nOs8lDOUp6i/giphy.gif" alt="Cute cat GIF">
+    </div>
+    <div class="button-container">
+        <button id="yesBtn" onclick="showLove()">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+    <div id="popup" class="popup">
+        <h2>I love you too! 💕</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        // Play background music
+        const audio = document.getElementById('backgroundMusic');
+        audio.volume = 0.3;
+        audio.play().catch(err => console.log("Audio play failed:", err));
+
+        // Mute/Unmute toggle
+        function toggleMute() {
+            if (audio.muted) {
+                audio.muted = false;
+                document.querySelector('.mute-button').textContent = '🔇';
+            } else {
+                audio.muted = true;
+                document.querySelector('.mute-button').textContent = '🔊';
+            }
+        }
+
+        // Move "No" button on hover or click attempt
+        const noBtn = document.getElementById('noBtn');
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('click', moveButton);
+
+        function moveButton() {
+            const maxX = window.innerWidth - noBtn.offsetWidth;
+            const maxY = window.innerHeight - noBtn.offsetHeight;
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${newX}px`;
+            noBtn.style.top = `${newY}px`;
+        }
+
+        // Show love message and confetti
+        function showLove() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 3000);
+
+            // Confetti and hearts
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff4d4d', '#ff99cc', '#ffffff']
+            });
+
+            // Add more hearts
+            for (let i = 0; i < 10; i++) {
+                createHeart();
+            }
+        }
+
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 10000);
+        }
+
+        // Generate hearts periodically
+        setInterval(createHeart, 1000);
+
+        // Ensure "No" button stays within bounds on resize
+        window.addEventListener('resize', () => {
+            const rect = noBtn.getBoundingClientRect();
+            if (rect.right > window.innerWidth || rect.bottom > window.innerHeight) {
+                moveButton();
+            }
+        });
+    </script>
+</body>
+</html>
