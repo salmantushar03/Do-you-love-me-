@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Me? 🐾</title>
+    <!-- Optional: Google Fonts for Comic Neue -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+            background: linear-gradient(45deg, #ffb6c1, #ffecd1, #b9e4ff, #ffb6c1);
+            background-size: 400%;
+            animation: gradient 12s ease infinite;
+            overflow: hidden;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: clamp(2em, 6vw, 3.5em);
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+            margin-bottom: 0.5em;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .message {
+            font-size: 1.3em;
+            color: #fff;
+            margin-bottom: 1.5em;
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.5s;
+            text-align: center;
+        }
+
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: #ff85a1;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 133, 161, 0. released under the GNU General Public License. This means that anyone is free to copy, distribute, and modify the software, but they must also make the source code available under the same license.
+
+The code itself is straightforward and doesn't require any external dependencies beyond a web browser. Here's a breakdown of what each part does:
+
+**HTML Structure**: The `index.html` file contains a simple structure with a heading, a message div, and two buttons inside a container. There's also a div for hearts and sparkles for visual effects, and a mascot div for the cute puppy.
+
+**CSS Styling**:
+- **Body**: Centers everything with a pastel gradient background that animates slowly.
+- **Heading**: Bounces gently with a glowing text shadow.
+- **Message**: Fades in with cute text and emojis.
+- **Buttons**: Pulse, have rounded edges, and glow on hover. The "No" button moves on hover using CSS custom properties.
+- **Hearts & Sparkles**: SVG-based animations for hearts and stars that float or twinkle.
+- **Mascot**: A puppy emoji waves in the corner.
+- **Responsive**: Adjusts font sizes and layouts for mobile devices.
+
+**JavaScript**:
+- **No Button**: Moves randomly on hover, getting faster each time (up to 2.5x speed). Triggers sparkles and updates messages.
+- **Yes Button**: Hides "No," shows a victory message, scales up, and floods the screen with hearts and sparkles.
+- **Effects**: Creates and cleans up heart and sparkle elements to avoid memory issues.
+- **Messages**: Cycles through adorable prompts like "Pwease say yes! 🐾" and "Yayy! I wuv you foweva! 💖".
+
+**Assets**: Uses inline SVGs for hearts and sparkles to avoid external files. The font (Comic Neue) is optional; it falls back to Comic Sans MS if unavailable.
+
+### How to Make It Live
+To get this site online, you have several easy options. Here’s a step-by-step guide for two free, beginner-friendly platforms: **GitHub Pages** and **Netlify**. Alternatively, I’ll cover hosting on your own server if you have one.
+
+#### Option 1: GitHub Pages (Free, Simple)
+1. **Save the Code**:
+   - Copy the entire code above into a file named `index.html`.
+   - Save it on your computer.
+
+2. **Create a GitHub Repository**:
+   - Go to [github.com](https://github.com) and sign up/log in.
+   - Click the "+" in the top-right corner and select "New repository."
+   - Name it something like `do-you-love-me` (or anything you like).
+   - Make it **public**, check "Add a README file," and click "Create repository."
+
+3. **Upload the File**:
+   - In your repository, click "Add file" > "Upload files."
+   - Drag and drop `index.html` or click to select it.
+   - Click "Commit changes."
+
+4. **Enable GitHub Pages**:
+   - Go to the "Settings" tab in your repository.
+   - Scroll to the "Pages" section.
+   - Under "Source," select the `main` branch and `/ (root)` folder, then click "Save."
+   - Wait a few minutes (it may take up to 10 minutes to deploy).
+   - You’ll see a URL like `https://yourusername.github.io/do-you-love-me` under the "Pages" section.
+
+5. **Test It**:
+   - Visit the URL GitHub provides.
+   - You’ll see your cute site with the bouncing "Do you love me?" question, moving "No" button, and all the adorable effects!
+
+#### Option 2: Netlify (Free, Drag-and-Drop)
+1. **Save the Code**:
+   - Save the code as `index.html`.
+
+2. **Sign Up for Netlify**:
+   - Go to [netlify.com](https://www.netlify.com) and sign up (free tier is fine).
+   - Log in to the dashboard.
+
+3. **Deploy the Site**:
+   - Click "New site from Git" or "Sites" > "Drag and drop your site folder."
+   - If dragging, create a folder (e.g., `do-you-love-me`), put `index.html` in it, and drag the folder into Netlify’s drop zone.
+   - Alternatively, connect your GitHub repo if you used GitHub (select the repo and deploy the `main` branch).
+
+4. **Publish**:
+   - Netlify will detect `index.html` and deploy it.
+   - It assigns a random URL like `https://cute-do-you-love-me.netlify.app`.
+   - To customize, go to "Site settings" > "Change site name" and pick something like `do-you-love-me`.
+
+5. **Test It**:
+   - Visit the URL Netlify provides.
+   - Your site is live with hearts, sparkles, and a waving puppy!
+
+#### Option 3: Your Own Server
+If you have a web server (e.g., through a hosting provider like Bluehost, Hostinger, or AWS):
+1. **Save the Code**:
+   - Save as `index.html`.
+
+2. **Upload to Server**:
+   - Use an FTP client (like FileZilla) or your host’s file manager.
+   - Upload `index.html` to the root directory (often `public_html` or `www`).
+
+3. **Set Up Domain** (Optional):
+   - If you have a domain (e.g., `mylovesite.com`), point it to your server’s IP address via your registrar’s DNS settings.
+   - Place `index.html` in the domain’s root folder.
+
+4. **Test It**:
+   - Visit your server’s URL or domain (e.g., `http://yourserver.com` or `mylovesite.com`).
+   - The site should load with all animations intact.
+
+### Testing the Site
+Once hosted:
+- **Check Functionality**: Hover over "No" to see it move (gets trickier each time). Click "Yes" for hearts, sparkles, and a sweet message.
+- **Mobile View**: Open on your phone to ensure buttons and text scale nicely.
+- **Share It**: Copy the URL and send it to friends to make it go viral! The playful "No" button and cute vibe are perfect for sharing.
+
+### Customizations (Optional)
+Want to make it even more *you*? Here are quick tweaks:
+- **Change Mascot**: Replace `🐶💖` in the `.mascot` div with 🐱, 🐰, or an image (`<img src="mascot.png" style="width:50px">` if you upload one).
+- **New Messages**: Edit the `messages` array in the JavaScript, e.g., add "You’re my fave! 😽" or "Pwease, pick Yes! 🦄".
+- **Colors**: Change the gradient in `body`’s `background`, e.g., swap `#ffb6c1` for `#d4a5ff` (lavender).
+- **Sound Effects**: Add chimes by uncommenting the audio lines in the JavaScript (you’d need to host MP3 files or use URLs like `https://yourserver.com/chime.mp3`).
+- **Share Button**: Add this after `.button-container` for mobile sharing:
+  ```html
+  <button onclick="navigator.share({title:'Do You Love Me?',text:'Answer my question! 🥰',url:window.location.href})" style="margin-top:20px;padding:10px 20px;font-size:1em;border-radius:25px;background:#ff85a1;color:white;border:none;cursor:pointer;">Share the Love! 💌</button>
